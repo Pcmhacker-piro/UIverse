@@ -1,0 +1,43 @@
+/* ── Base ── */
+.uiverse-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+/* ── Pill ── */
+.uiverse-badge--pill {
+  border-radius: 999px;
+}
+
+/* ── Variants ── */
+.uiverse-badge--primary {
+  background-color: #4f46e5;
+  color: #ffffff;
+}
+
+.uiverse-badge--success {
+  background-color: #22c55e;
+  color: #ffffff;
+}
+
+.uiverse-badge--warning {
+  background-color: #f59e0b;
+  color: #ffffff;
+}
+
+.uiverse-badge--danger {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+
+.uiverse-badge--info {
+  background-color: #0ea5e9;
+  color: #ffffff;
+}

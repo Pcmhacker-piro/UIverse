@@ -41,7 +41,7 @@ export const componentsList = [
     id: 5,
     name: 'Badge',
     category: 'Display',
-    status: 'Planned',
+    status: 'Stable',
     description: 'Small status indicator badge with color variants.',
   },
   {

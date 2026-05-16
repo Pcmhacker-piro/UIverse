@@ -6,10 +6,12 @@ import Button from '../components/Button/Button.jsx'
 import Navbar from '../components/Navbar/Navbar.jsx'
 import { componentsList } from '../data/componentsList.js'
 import './Components.css'
+import Badge from '../components/Badge/Badge.jsx'
 
 // Sidebar navigation items
 const sections = [
   { id: 'buttons', label: '🔘 Buttons' },
+  { id: 'badges', label: '🏷️ Badges' },
   { id: 'all-components', label: '📋 All Components' },
 ]
 
@@ -33,14 +35,13 @@ function Components() {
       <Navbar />
 
       <div className="comp-layout">
-
         {/* ── Sidebar ── */}
         <aside className="comp-sidebar">
           <p className="sidebar-label">ON THIS PAGE</p>
           {sections.map((s) => (
             <button
               key={s.id}
-              className={`sidebar-item ${activeSection === s.id ? 'sidebar-item--active' : ''}`}
+              className={`sidebar-item ${activeSection === s.id ? "sidebar-item--active" : ""}`}
               onClick={() => scrollTo(s.id)}
             >
               {s.label}
@@ -63,7 +64,9 @@ function Components() {
         <main className="comp-main">
           <div className="comp-header">
             <h1>Components</h1>
-            <p>Production-ready UI components. Copy the code, drop it in, done.</p>
+            <p>
+              Production-ready UI components. Copy the code, drop it in, done.
+            </p>
           </div>
 
           {/* ── Buttons Section ── */}
@@ -73,7 +76,8 @@ function Components() {
               <span className="comp-badge comp-badge--stable">Stable</span>
             </div>
             <p className="comp-section-desc">
-              Versatile button component with 3 variants and 3 sizes. Supports any click handler.
+              Versatile button component with 3 variants and 3 sizes. Supports
+              any click handler.
             </p>
 
             {/* Variants */}
@@ -102,9 +106,13 @@ function Components() {
                 <span>JSX</span>
                 <button
                   className="copy-btn"
-                  onClick={() => handleCopy(`<Button text="Primary"   variant="primary" />\n<Button text="Secondary" variant="secondary" />\n<Button text="Danger"    variant="danger" />\n\n{/* Sizes */}\n<Button text="Small"  variant="primary" size="sm" />\n<Button text="Medium" variant="primary" size="md" />\n<Button text="Large"  variant="primary" size="lg" />`)}
+                  onClick={() =>
+                    handleCopy(
+                      `<Button text="Primary"   variant="primary" />\n<Button text="Secondary" variant="secondary" />\n<Button text="Danger"    variant="danger" />\n\n{/* Sizes */}\n<Button text="Small"  variant="primary" size="sm" />\n<Button text="Medium" variant="primary" size="md" />\n<Button text="Large"  variant="primary" size="lg" />`,
+                    )
+                  }
                 >
-                  {copied ? '✅ Copied!' : '📋 Copy'}
+                  {copied ? "✅ Copied!" : "📋 Copy"}
                 </button>
               </div>
               <pre>{`<Button text="Primary"   variant="primary" />
@@ -123,13 +131,160 @@ function Components() {
               <div className="props-table-wrap">
                 <table className="props-table">
                   <thead>
-                    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+                    <tr>
+                      <th>Prop</th>
+                      <th>Type</th>
+                      <th>Default</th>
+                      <th>Description</th>
+                    </tr>
                   </thead>
                   <tbody>
-                    <tr><td><code>text</code></td><td>string</td><td><code>"Button"</code></td><td>Label text</td></tr>
-                    <tr><td><code>variant</code></td><td>string</td><td><code>"primary"</code></td><td>primary · secondary · danger</td></tr>
-                    <tr><td><code>size</code></td><td>string</td><td><code>"md"</code></td><td>sm · md · lg</td></tr>
-                    <tr><td><code>onClick</code></td><td>function</td><td>—</td><td>Click handler</td></tr>
+                    <tr>
+                      <td>
+                        <code>text</code>
+                      </td>
+                      <td>string</td>
+                      <td>
+                        <code>"Button"</code>
+                      </td>
+                      <td>Label text</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <code>variant</code>
+                      </td>
+                      <td>string</td>
+                      <td>
+                        <code>"primary"</code>
+                      </td>
+                      <td>primary · secondary · danger</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <code>size</code>
+                      </td>
+                      <td>string</td>
+                      <td>
+                        <code>"md"</code>
+                      </td>
+                      <td>sm · md · lg</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <code>onClick</code>
+                      </td>
+                      <td>function</td>
+                      <td>—</td>
+                      <td>Click handler</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          {/* ── Badge Section ── */}
+          <section className="comp-section" id="badges">
+            <div className="comp-section-header">
+              <h2>Badge</h2>
+              <span className="comp-badge comp-badge--stable">Stable</span>
+            </div>
+
+            <p className="comp-section-desc">
+              Reusable badge component with multiple variants and optional pill
+              styling.
+            </p>
+
+            {/* Variants */}
+            <div className="comp-subsection">
+              <h3 className="comp-subsection-title">Variants</h3>
+
+              <div className="comp-preview">
+                <Badge text="Primary" variant="primary" />
+                <Badge text="Success" variant="success" />
+                <Badge text="Warning" variant="warning" />
+                <Badge text="Danger" variant="danger" />
+                <Badge text="Info" variant="info" />
+                <Badge text="Pill" variant="primary" pill />
+              </div>
+            </div>
+
+            {/* Code block */}
+            <div className="code-block">
+              <div className="code-block-header">
+                <span>JSX</span>
+
+                <button
+                  className="copy-btn"
+                  onClick={() =>
+                    handleCopy(`<Badge text="Primary" variant="primary" />
+<Badge text="Success" variant="success" />
+<Badge text="Warning" variant="warning" />
+<Badge text="Danger" variant="danger" />
+<Badge text="Info" variant="info" />
+<Badge text="Pill" variant="primary" pill />`)
+                  }
+                >
+                  {copied ? "✅ Copied!" : "📋 Copy"}
+                </button>
+              </div>
+
+              <pre>{`<Badge text="Primary" variant="primary" />
+<Badge text="Success" variant="success" />
+<Badge text="Warning" variant="warning" />
+<Badge text="Danger" variant="danger" />
+<Badge text="Info" variant="info" />
+<Badge text="Pill" variant="primary" pill />`}</pre>
+            </div>
+
+            {/* Props table */}
+            <div className="comp-subsection">
+              <h3 className="comp-subsection-title">Props</h3>
+
+              <div className="props-table-wrap">
+                <table className="props-table">
+                  <thead>
+                    <tr>
+                      <th>Prop</th>
+                      <th>Type</th>
+                      <th>Default</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td>
+                        <code>text</code>
+                      </td>
+                      <td>string</td>
+                      <td>
+                        <code>"Badge"</code>
+                      </td>
+                      <td>Badge label text</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <code>variant</code>
+                      </td>
+                      <td>string</td>
+                      <td>
+                        <code>"primary"</code>
+                      </td>
+                      <td>primary · success · warning · danger · info</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <code>pill</code>
+                      </td>
+                      <td>boolean</td>
+                      <td>
+                        <code>false</code>
+                      </td>
+                      <td>Adds pill/rounded styling</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -147,15 +302,26 @@ function Components() {
             <div className="comp-table-wrap">
               <table className="comp-table">
                 <thead>
-                  <tr><th>Name</th><th>Category</th><th>Status</th><th>Description</th></tr>
+                  <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Description</th>
+                  </tr>
                 </thead>
                 <tbody>
                   {componentsList.map((c) => (
                     <tr key={c.id}>
-                      <td><strong>{c.name}</strong></td>
-                      <td><span className="category-tag">{c.category}</span></td>
                       <td>
-                        <span className={`comp-badge comp-badge--${c.status.toLowerCase()}`}>
+                        <strong>{c.name}</strong>
+                      </td>
+                      <td>
+                        <span className="category-tag">{c.category}</span>
+                      </td>
+                      <td>
+                        <span
+                          className={`comp-badge comp-badge--${c.status.toLowerCase()}`}
+                        >
                           {c.status}
                         </span>
                       </td>
@@ -166,11 +332,10 @@ function Components() {
               </table>
             </div>
           </section>
-
         </main>
       </div>
     </div>
-  )
+  );
 }
 
 export default Components

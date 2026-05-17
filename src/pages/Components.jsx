@@ -1,5 +1,4 @@
 // Components.jsx – Component showcase page
-// To add a new section: add an entry to `sections` array and create the JSX below
 
 import React, { useState } from 'react'
 import Button from '../components/Button/Button.jsx'
@@ -7,11 +6,30 @@ import Navbar from '../components/Navbar/Navbar.jsx'
 import { componentsList } from '../data/componentsList.js'
 import './Components.css'
 
-// Sidebar navigation items
 const sections = [
-  { id: 'buttons', label: '🔘 Buttons' },
-  { id: 'all-components', label: '📋 All Components' },
+  {
+    id: 'buttons',
+    label: 'Buttons',
+    icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="8" width="18" height="8" rx="3"/></svg>,
+  },
+  {
+    id: 'all-components',
+    label: 'All Components',
+    icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>,
+  },
 ]
+
+const CopyIcon = () => (
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+  </svg>
+)
+
+const CheckIcon = () => (
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="20 6 9 17 4 12"/>
+  </svg>
+)
 
 function Components() {
   const [activeSection, setActiveSection] = useState('buttons')
@@ -43,6 +61,7 @@ function Components() {
               className={`sidebar-item ${activeSection === s.id ? 'sidebar-item--active' : ''}`}
               onClick={() => scrollTo(s.id)}
             >
+              <span className="sidebar-item-icon">{s.icon}</span>
               {s.label}
             </button>
           ))}
@@ -55,7 +74,12 @@ function Components() {
             rel="noreferrer"
             className="sidebar-item sidebar-item--link"
           >
-            ↗ GitHub Repo
+            <span className="sidebar-item-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+              </svg>
+            </span>
+            GitHub Repo
           </a>
         </aside>
 
@@ -76,7 +100,6 @@ function Components() {
               Versatile button component with 3 variants and 3 sizes. Supports any click handler.
             </p>
 
-            {/* Variants */}
             <div className="comp-subsection">
               <h3 className="comp-subsection-title">Variants</h3>
               <div className="comp-preview">
@@ -86,7 +109,6 @@ function Components() {
               </div>
             </div>
 
-            {/* Sizes */}
             <div className="comp-subsection">
               <h3 className="comp-subsection-title">Sizes</h3>
               <div className="comp-preview comp-preview--align-end">
@@ -96,7 +118,6 @@ function Components() {
               </div>
             </div>
 
-            {/* Code block */}
             <div className="code-block">
               <div className="code-block-header">
                 <span>JSX</span>
@@ -104,7 +125,7 @@ function Components() {
                   className="copy-btn"
                   onClick={() => handleCopy(`<Button text="Primary"   variant="primary" />\n<Button text="Secondary" variant="secondary" />\n<Button text="Danger"    variant="danger" />\n\n{/* Sizes */}\n<Button text="Small"  variant="primary" size="sm" />\n<Button text="Medium" variant="primary" size="md" />\n<Button text="Large"  variant="primary" size="lg" />`)}
                 >
-                  {copied ? '✅ Copied!' : '📋 Copy'}
+                  {copied ? <><CheckIcon /> Copied</> : <><CopyIcon /> Copy</>}
                 </button>
               </div>
               <pre>{`<Button text="Primary"   variant="primary" />
@@ -117,7 +138,6 @@ function Components() {
 <Button text="Large"  variant="primary" size="lg" />`}</pre>
             </div>
 
-            {/* Props table */}
             <div className="comp-subsection">
               <h3 className="comp-subsection-title">Props</h3>
               <div className="props-table-wrap">
